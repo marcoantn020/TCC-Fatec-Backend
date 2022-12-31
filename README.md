@@ -84,7 +84,6 @@
 - date_unchecked: DATETIME
 - consultation_unchecked: BOOLEAN
 
-#
 ***
 ### Levantamento de requisitos
 
@@ -104,7 +103,7 @@ o paciente 10 minutos antes da consulta. Cada consulta dura no minimo 40 minutos
 - sistema de pontos (acumulou x pontos ganha desconto de x%)
 - gerenciar estoque dos produtos
 
-#
+
 ***
 ### Tecnologias e seus motivos
 
@@ -133,8 +132,7 @@ o paciente 10 minutos antes da consulta. Cada consulta dura no minimo 40 minutos
   - 2 desenvolvedores e especialistas no negócio devem explorar esse domínio de forma colaborativa;
   - 3 como resultado, eles devem se comunicar usando uma linguagem ubíqua, mas dentro de um contexto
 
-
-#
+  
 ***
 ### Endpoints
 **login**
@@ -156,12 +154,12 @@ o paciente 10 minutos antes da consulta. Cada consulta dura no minimo 40 minutos
 - /__schedule/list__
 - /__medical_attendance__
 
-#
+
 ***
 ### Documentação
 - http://0.0.0.0/docs
 
-#
+
 ***
 ### COMANDOS
 OBS: é nescessario ter o **[docker](https://docs.docker.com/desktop/install/linux-install/)** e **[docker-compose](https://docs.docker.com/desktop/install/linux-install/)** instalado
@@ -172,6 +170,6 @@ OBS: é nescessario ter o **[docker](https://docs.docker.com/desktop/install/lin
 - rodar aplicação
   - docker-compose start
 
-#
+
 ***
 Created by - Marco Antonio 
