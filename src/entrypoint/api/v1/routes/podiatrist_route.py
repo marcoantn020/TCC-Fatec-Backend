@@ -40,7 +40,7 @@ from src.core.usecase.utils import MyCustomError
 router = APIRouter()
 
 
-@router.post("/create/patient", dependencies=[Depends(JWTBearer())], status_code=status.HTTP_201_CREATED,
+@router.post("/register/pathology", dependencies=[Depends(JWTBearer())], status_code=status.HTTP_201_CREATED,
              response_model=PathologyCreate)
 def create_new_patient(request: Request, pathology: PathologyInputCreate):
     try:
