@@ -1,0 +1,15 @@
+Problema:
+    Atualmente o cadastro de pacientes é feito numa planilha e armazenado em pastas, não so o cadastro mais tambem a consulta é salva desta maneira.
+    As consultas são marcadas pelo whatsapp, quando uma consulta é realizada uma ficha com detalhes do atendimento é preeenchida, o podologo avisa
+    o paciente 10 minutos antes da consulta. Cada consulta dura no minimo 40 minutos podendo durar ate 1 horas dependo do estado das patologias do paciente.
+
+Dor:
+    Gerenciar os agendamentos das consultas.
+
+Solucao KISS[Keep-It-Simple-Stupid!] - (https://tiagoaguiar.co/a-tecnica-do-kiss-como-programador~Zd-ocMkXp2w#:~:text=A%20t%C3%A9cnica%20Kiss%2C%20um%20acr%C3%B3nimo,significa%3A%20Mantenha%20isso%20simplesmente%20est%C3%BApido!)]:
+    Sistema para gerenciar as consultas.
+
+Features:
+    - gerenciar pagamentos
+    - sistema de pontos (acumulou x pontos ganha desconto de x%)
+    - gerenciar estoque dos produtos

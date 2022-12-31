@@ -1,0 +1,15 @@
+patient:
+  - create - ok
+  - update - ok
+  - schedule medical appointment - ok
+  - list medical consultation (especifico) - ok
+
+Podiatrist:
+  - create pathology - ok
+  - update pathology - ok
+  - list patients - ok
+  - search patient by id - ok
+  - search patient by name - ok
+  - cancel medical appointment - ok
+  - list medical appointment today and other date - ok
+  - finish medical appointment

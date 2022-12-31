@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    restart: always
+    tty: true
+    environment:
+      MYSQL_DATABASE: 'app'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+     - "3306:3306"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - ./init/mysql:/var/lib/mysql
+    networks:
+      - tcc-network
+
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python
+    command: 'python main.py'
+    ports:
+     - "80:80"
+    depends_on:
+     - mysqldb
+    volumes:
+      - .:/var/www/app/
+    networks:
+      - tcc-network
+
+networks:
+  tcc-network:
+    driver: bridge
+
