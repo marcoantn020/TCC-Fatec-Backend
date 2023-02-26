@@ -1,6 +1,6 @@
 config = {
     'database': {
-        'HOST': 'mysql',
+        'HOST': 'tccmysql',
         'USERNAME': 'root',
         'PASSWORD': 'root',
         'DB': 'app'

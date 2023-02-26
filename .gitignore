@@ -1,6 +1,6 @@
 Pipfile
 Pipfile.lock
-init/mysql/*
+init/mysql/dbdata/*
 __pycache__/*
 venv
 .idea

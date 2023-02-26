@@ -1,10 +1,23 @@
 version: '3'
 
 services:
-  mysqldb:
-    image: mysql:5.7
-    command: --innodb-use-native-aio=0
-    container_name: mysql
+  python:
+    build: .
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 40s
+    container_name: python
+    command: 'python main.py'
+    ports:
+     - "8000:8000"
+    depends_on:
+     - db
+    volumes:
+      - .:/var/www/app/
+    networks:
+      - tcc-network
+
+  db:
+    build: ./init/mysql
+    container_name: tccmysql
     restart: always
     tty: true
     environment:
@@ -14,22 +27,7 @@ services:
      - "3306:3306"
     volumes:
       - ./init:/docker-entrypoint-initdb.d
-      - ./init/mysql:/var/lib/mysql
-    networks:
-      - tcc-network
-
-  python:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: python
-    command: 'python main.py'
-    ports:
-     - "80:80"
-    depends_on:
-     - mysqldb
-    volumes:
-      - .:/var/www/app/
+      - ./init/mysql/dbdata:/var/lib/mysql
     networks:
       - tcc-network
 
