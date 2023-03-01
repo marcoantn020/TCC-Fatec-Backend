@@ -1,6 +1,6 @@
 from abc import ABC
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
+from typing import Any, Dict
 
 
 class ScheduleUseCase(ABC):
@@ -9,5 +9,5 @@ class ScheduleUseCase(ABC):
     def execute(self,
                 patient_id: int,
                 date_of_scheduling: str,
-                hour_of_scheduling: str) -> HttpResponse:
+                hour_of_scheduling: str) -> Dict[str,Any]:
         raise Exception("Method not implemented: execute")

@@ -15,6 +15,6 @@ router = APIRouter()
 def login(user: LoginInput):
     try:
         login_generate = LoginController.handle(user)
-        return login_generate.body
+        return login_generate
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)

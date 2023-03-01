@@ -1,6 +1,5 @@
 from datetime import datetime
 from src.core.usecase.patient.UpdatePatientUseCase import UpdatePatientUseCase
-from src.core.usecase.utils.HttpResponse import HttpResponse
 from src.core.dataprovider.repository.patient.FindPatientByUsername import FindPatientByUsername
 from src.core.dataprovider.repository.patient.UpdatePatient import UpdatePatient
 from src.core.dataprovider.service.Encrypter import Encrypter
@@ -8,6 +7,7 @@ from src.core.domain.Patient import Patient
 from src.core.usecase.utils.MyCustomError import MyCustomError
 from src.core.usecase.utils.DateFormat import DateFormat
 from src.core.usecase.utils.Validations import Validations
+from typing import Any, Dict
 
 
 class AdminUpdatePatientUseCaseImpl(UpdatePatientUseCase):
@@ -41,7 +41,7 @@ class AdminUpdatePatientUseCaseImpl(UpdatePatientUseCase):
                 practice_activity: int,
                 what_activity: str,
                 is_admin: int = None
-                ) -> HttpResponse:
+                ) -> Dict[str, Any]:
 
         Validations.user_is_admin(is_admin=is_admin)
 
@@ -82,7 +82,7 @@ class AdminUpdatePatientUseCaseImpl(UpdatePatientUseCase):
 
         self.__update_patient.update(patient=update_patient)
 
-        return HttpResponse(status_code=202, body={"message": "success", "data": None})
+        return {"message": "success", "data": None}
 
     def __validate_if_the_patient_exists(self, username: str) -> Patient:
         patient_exists = self.__find_patient_by_username.find(username)

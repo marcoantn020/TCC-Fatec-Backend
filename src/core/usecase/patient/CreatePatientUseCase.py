@@ -1,6 +1,6 @@
 from abc import ABC
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
+from typing import Any, Dict
 
 
 class CreatePatientUseCase(ABC):
@@ -22,5 +22,5 @@ class CreatePatientUseCase(ABC):
                 district: str,
                 practice_activity: int,
                 what_activity: str
-                ) -> HttpResponse:
+                ) -> Dict[str, Any]:
         raise Exception("Method not implemented: execute")

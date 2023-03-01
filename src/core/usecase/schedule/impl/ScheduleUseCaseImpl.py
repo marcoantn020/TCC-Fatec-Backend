@@ -2,11 +2,10 @@ from src.core.usecase.schedule.ScheduleUseCase import ScheduleUseCase
 from src.core.dataprovider.repository.schedule.SchedulePodiatristConsultation import SchedulePodiatristConsultation
 from src.core.dataprovider.repository.schedule.FindScheduleByScheduling import FindScheduleByScheduling
 from src.core.domain.Schedule import Schedule
-from src.core.usecase.utils.HttpResponse import HttpResponse
 from src.core.usecase.utils.MyCustomError import MyCustomError
 from src.core.usecase.utils.DateFormat import DateFormat
 from datetime import datetime
-from typing import Any
+from typing import Any, Dict
 
 
 class ScheduleUseCaseImpl(ScheduleUseCase):
@@ -20,7 +19,7 @@ class ScheduleUseCaseImpl(ScheduleUseCase):
         self.__schedule_podiatrist_consultation = schedule_podiatrist_consultation
         self.__find_schedule_by_scheduling = find_schedule_by_scheduling
 
-    def execute(self, patient_id: int, date_of_scheduling: str, hour_of_scheduling: str) -> HttpResponse:
+    def execute(self, patient_id: int, date_of_scheduling: str, hour_of_scheduling: str) -> Dict[str, Any]:
         self.__validate_str_date(str_date=date_of_scheduling)
         self.__validate_str_hour(str_hour=hour_of_scheduling)
 
@@ -45,8 +44,7 @@ class ScheduleUseCaseImpl(ScheduleUseCase):
 
         self.__schedule_podiatrist_consultation.schedule(schedule=schedule)
 
-        return HttpResponse(
-            status_code=201, body={"schedule": DateFormat.datetime_to_str_schedule(value=date_input)})
+        return {"schedule": DateFormat.datetime_to_str_schedule(value=date_input)}
 
     def __verify_date(self, date_of_scheduling: datetime):
         schedule = self.__find_schedule_by_scheduling.find(date_of_scheduling=date_of_scheduling)

@@ -1,6 +1,6 @@
 from abc import ABC
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
+from typing import Any, Dict
 
 
 class CreatePathologyUseCase(ABC):
@@ -37,5 +37,5 @@ class CreatePathologyUseCase(ABC):
                 type_of_sock: str,
                 type_of_shoe: str,
                 shoe_number: str
-                ) -> HttpResponse:
+                ) -> Dict[str, Any]:
         raise Exception("Method not implemented: execute")

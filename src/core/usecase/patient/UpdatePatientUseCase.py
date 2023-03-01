@@ -1,8 +1,6 @@
 from abc import ABC
-from typing import Union
+from typing import Any, Dict
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
-
 
 class UpdatePatientUseCase(ABC):
 
@@ -25,5 +23,5 @@ class UpdatePatientUseCase(ABC):
                 practice_activity: int,
                 what_activity: str,
                 is_admin: int = None
-                ) -> HttpResponse:
+                ) -> Dict[str, Any]:
         raise Exception("Method not implemented: execute")

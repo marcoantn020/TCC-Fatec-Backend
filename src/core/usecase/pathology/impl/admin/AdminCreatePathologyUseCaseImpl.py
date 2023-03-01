@@ -1,13 +1,12 @@
 from datetime import datetime
 from src.core.usecase.pathology.CreatePathologyUseCase import CreatePathologyUseCase
-from src.core.usecase.utils import HttpResponse
 from src.core.usecase.utils.MyCustomError import MyCustomError
-from src.core.usecase.utils.Validations import Validations
 from src.core.dataprovider.repository.pathology.CreatePathology import CreatePathology
 from src.core.dataprovider.repository.pathology.UpdatePatientToActive import UpdatePatientToActive
 from src.core.dataprovider.repository.pathology.FindByPathologyByPatientId import FindByPathologyByPatientId
 from src.core.dataprovider.repository.patient.FindPatientById import FindPatientById
 from src.core.domain.Pathology import Pathology
+from typing import Any, Dict
 
 
 class AdminCreatePathologyUseCaseImpl(CreatePathologyUseCase):
@@ -58,7 +57,7 @@ class AdminCreatePathologyUseCaseImpl(CreatePathologyUseCase):
                 type_of_sock: str,
                 type_of_shoe: str,
                 shoe_number: str
-                ) -> HttpResponse:
+                ) -> Dict[str, Any]:
 
         self.__check_patient_already_pathology_registrate(id_patient=id_patient)
         self.__validate_have_foot_surgery(have_foot_surgery=have_foot_surgery, which_foot=which_foot)
@@ -101,7 +100,7 @@ class AdminCreatePathologyUseCaseImpl(CreatePathologyUseCase):
         response = self.__create_pathology.create(pathology=pathology)
         if response:
             self.__update_patient_to_active.update(is_active=1, id_patient=id_patient)
-        return HttpResponse(status_code=201, body={"id": response})
+        return {"id": response}
 
     @staticmethod
     def __validate_have_foot_surgery(have_foot_surgery: int, which_foot: str):
