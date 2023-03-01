@@ -34,7 +34,7 @@ router = APIRouter()
 def create_new_patient(user: PatientInputCreate):
     try:
         new_patient = CreatePatientController.handle(user)
-        return new_patient.body
+        return new_patient
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -44,7 +44,7 @@ def update_patient(patient: PatientInputUpdate, request: Request):
     try:
         id_patient = GetUserDataLogged.get_id(request=request)
         patient_up = UpdatePatientController.handle(input_data=patient, id_patient=id_patient)
-        return patient_up.body
+        return patient_up
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -56,7 +56,7 @@ def get_patient_logged(request: Request):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         patient_id: int = GetUserDataLogged.get_id(request=request)
         user_patient = FindPatientByIdController.handle(is_admin=is_admin, id_patient=patient_id)
-        return user_patient.body
+        return user_patient
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -67,7 +67,7 @@ def schedule(schedule_input: ScheduleInput, request: Request):
     try:
         patient_id: int = GetUserDataLogged.get_id(request=request)
         schedule_result = ScheduleController.handle(schedule=schedule_input, patient_id=patient_id)
-        return schedule_result.body
+        return schedule_result
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -78,6 +78,6 @@ def schedule_list_appointment(request: Request, finish: int = 0):
     try:
         patient_id: int = GetUserDataLogged.get_id(request=request)
         schedule_result = AdminFindScheduleByPatientIdController.handle(id_patient=patient_id, finish=finish)
-        return schedule_result.body
+        return schedule_result
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)

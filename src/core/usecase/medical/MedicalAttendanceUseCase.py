@@ -1,6 +1,6 @@
 from abc import ABC
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
+from typing import Any, Dict
 
 
 class MedicalAttendanceUseCase(ABC):
@@ -19,5 +19,5 @@ class MedicalAttendanceUseCase(ABC):
                 pathology_present_in_nail_left_foot: str,
                 pathology_present_in_nail_right_foot: str,
                 performed_procedure: str,
-                date_of_schedule: str) -> HttpResponse:
+                date_of_schedule: str) -> Dict[str, Any]:
         raise Exception("method not implemented: execute")

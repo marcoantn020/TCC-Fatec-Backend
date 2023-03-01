@@ -1,8 +1,8 @@
 from src.core.usecase.patient.FindAllPatientUseCase import FindAllPatientUseCase
 from src.core.dataprovider.repository.patient.FindPatient import FindPatient
-from src.core.usecase.utils.HttpResponse import HttpResponse
 from src.core.usecase.utils.MyCustomError import MyCustomError
 from src.core.usecase.DTO.PatientDto import PatientDto
+from typing import Any, Dict
 
 
 class FindAllPatientUseCaseImpl(FindAllPatientUseCase):
@@ -11,7 +11,7 @@ class FindAllPatientUseCaseImpl(FindAllPatientUseCase):
     def __init__(self, find_patients: FindPatient) -> None:
         self.__find_patients = find_patients
 
-    def execute(self, limit: int, offset: int) -> HttpResponse:
+    def execute(self, limit: int, offset: int) -> Dict[str, Any]:
         limit = self.__verify_if_limit_is_none(limit)
         offset = self.__verify_if_offset_is_none(offset)
         response = self.__find_patients.all(limit=limit, offset=offset, condition="<>")
@@ -20,7 +20,7 @@ class FindAllPatientUseCaseImpl(FindAllPatientUseCase):
 
         response = PatientDto.format(response)
 
-        return HttpResponse(status_code=200, body=response)
+        return response
 
     @staticmethod
     def __verify_if_limit_is_none(limit):

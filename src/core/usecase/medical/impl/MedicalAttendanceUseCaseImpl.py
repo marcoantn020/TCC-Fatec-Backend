@@ -1,5 +1,6 @@
+from typing import Any, Dict
+
 from src.core.usecase.medical.MedicalAttendanceUseCase import MedicalAttendanceUseCase
-from src.core.usecase.utils import HttpResponse
 from src.core.usecase.utils import MyCustomError
 from src.core.usecase.utils import DateFormat
 from src.core.dataprovider.repository.medical.CreateMedicalAttendance import CreateMedicalAttendance
@@ -38,7 +39,7 @@ class MedicalAttendanceUseCaseImpl(MedicalAttendanceUseCase):
                 pathology_present_in_nail_left_foot: str,
                 pathology_present_in_nail_right_foot: str,
                 performed_procedure: str,
-                date_of_schedule: str) -> HttpResponse:
+                date_of_schedule: str) -> Dict[str, Any]:
         patient = self.__patient_exists(patient_id=id_patient)
         pathology = self.__pathology_exists(patient_id=id_patient)
 
@@ -63,7 +64,7 @@ class MedicalAttendanceUseCaseImpl(MedicalAttendanceUseCase):
             date_consultation_completed=DateFormat.get_date_and_hour_current()
         )
         self.__create_medical_attendance.create(medical_attendance=medical_attendance, date_of_schedule=date_of_scheduling)
-        return HttpResponse(status_code=200, body={"attendance": f"Atendimento do paciente {patient['first_name']} realizado."})
+        return {"attendance": f"Atendimento do paciente {patient['first_name']} realizado."}
 
     def __patient_exists(self, patient_id: int):
         patient = self.__find_patient_by_id.find(id_patient=patient_id)

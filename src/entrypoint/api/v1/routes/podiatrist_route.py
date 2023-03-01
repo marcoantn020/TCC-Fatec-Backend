@@ -47,7 +47,7 @@ def create_new_patient(request: Request, pathology: PathologyInputCreate):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         new_pathology = AdminCreatePathologyController.handle(input_data=pathology)
-        return new_pathology.body
+        return new_pathology
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -59,7 +59,7 @@ def find_patient_by_id(request: Request, patient_id: int):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         patient = AdminFindPatientByIdController.handle(id_patient=patient_id)
-        return patient.body
+        return patient
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -71,7 +71,7 @@ def find_all_patients(request: Request, limit: int = None, offset: int = None):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         list_users = AdminFindPatientAllController.handle(limit=limit, offset=offset)
-        return list_users.body
+        return list_users
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -83,7 +83,7 @@ def find_patient_by_name(request: Request, name: str):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         patient = AdminFindPatientByNameController.handle(name=name)
-        return patient.body
+        return patient
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -94,7 +94,7 @@ def cancel_schedule(request: Request, schedule_cancel: ScheduleInputCancel):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         patient = AdminScheduleCancelController.handle(input_data=schedule_cancel)
-        return patient.body
+        return patient
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -106,7 +106,7 @@ def find_schedule_by_date(request: Request, date: FindScheduleByDate):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         scheduling = AdminFindScheduleByDateController.handle(input_data=date)
-        return scheduling.body
+        return scheduling
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
@@ -118,6 +118,6 @@ def medical_attendance(request: Request, attendance: InputMedicalAttendance):
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)
         Validations.user_is_admin(is_admin)
         scheduling = MedicalAttendanceController.handle(input_data=attendance)
-        return scheduling.body
+        return scheduling
     except MyCustomError as error:
         raise HTTPException(status_code=error.status_code, detail=error.message)

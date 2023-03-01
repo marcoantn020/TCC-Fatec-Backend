@@ -4,10 +4,10 @@ from src.core.usecase.patient.CreatePatientUseCase import CreatePatientUseCase
 from src.core.dataprovider.repository.patient import CreatePatient
 from src.core.dataprovider.repository.patient import FindPatientByUsername
 from src.core.dataprovider.service import Encrypter
-from src.core.usecase.utils import HttpResponse
 from src.core.usecase.utils import MyCustomError
 from src.core.usecase.utils import DateFormat
 from src.core.usecase.utils import Validations
+from typing import Any, Dict
 
 from src.core.domain import Patient
 
@@ -41,7 +41,7 @@ class CreatePatientUseCaseImpl(CreatePatientUseCase):
                 district: str,
                 practice_activity: int,
                 what_activity: str
-                ) -> HttpResponse:
+                ) -> Dict[str, Any]:
 
         Validations.validate_name_length(name=first_name, name_variable="first_name", length=4)
         Validations.validate_name_length(name=last_name, name_variable="last_name", length=4)
@@ -79,7 +79,7 @@ class CreatePatientUseCaseImpl(CreatePatientUseCase):
         )
 
         response = self.__create_patient.create(patient=patient)
-        return HttpResponse(status_code=201, body={"id": response})
+        return {"id": response}
 
     def __check_if_patient_already_exists(self, username: str):
         if self.__get_patient_by_username.find(username):

@@ -1,9 +1,9 @@
 from abc import ABC
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
+from typing import Any, Dict
 
 
 class FindScheduleByPatientIdUseCase(ABC):
     @abstractmethod
-    def execute(self, patient_id: int, finish: int) -> HttpResponse:
+    def execute(self, patient_id: int, finish: int) -> Dict[str, Any]:
         raise Exception("Method not implemented: execute")

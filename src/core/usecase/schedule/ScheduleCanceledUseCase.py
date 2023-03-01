@@ -1,10 +1,9 @@
 from abc import ABC
 from abc import abstractmethod
-from src.core.usecase.utils import HttpResponse
 
 
 class ScheduleCanceledUseCase(ABC):
 
     @abstractmethod
-    def execute(self, id_patient: int, date: str) -> HttpResponse:
+    def execute(self, id_patient: int, date: str) -> None:
         raise Exception("Method not implemented: execute")
