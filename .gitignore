@@ -1,7 +1,8 @@
 Pipfile
 Pipfile.lock
 init/mysql/dbdata/*
-__pycache__/*
+*/__pycache__/*
+__pycache__
 venv
 .idea
 src/dataProvider/config/__pycache__/
