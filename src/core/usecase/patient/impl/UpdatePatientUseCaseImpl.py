@@ -61,6 +61,8 @@ class UpdatePatientUseCaseImpl(UpdatePatientUseCase):
         date = datetime.now()
 
         patient: Patient = self.__validate_if_the_patient_exists(id_patient=id_patient)
+        self.__validate_password( password, password_confirmation, patient)
+
 
         update_patient: Patient = Patient(
             id_patient=id_patient,
@@ -96,6 +98,6 @@ class UpdatePatientUseCaseImpl(UpdatePatientUseCase):
     def __validate_password(self, password: str, password_confirmation: str, patient: Patient) -> str:
         if password:
             if password != password_confirmation:
-                raise MyCustomError(message="password/passwordConfirmation are not the same")
+                raise MyCustomError(message="password/passwordConfirmation não são iguais")
             return self.__encrypter.encrypter(password)
         return patient["password"]
