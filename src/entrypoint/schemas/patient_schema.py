@@ -47,7 +47,7 @@ class PatientCreated(BaseModel):
 
 class PatientOutput(BaseModel):
     id: Optional[int]
-    name: Optional[str]
+    first_name: Optional[str]
     last_name: Optional[str]
     username: Optional[str]
     birth_date: Optional[str]

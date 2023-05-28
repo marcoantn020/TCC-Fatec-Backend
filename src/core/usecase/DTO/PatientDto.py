@@ -9,7 +9,7 @@ class PatientDto:
 
             return {
                 "id": patient["id_patient"],
-                "name": patient["first_name"],
+                "first_name": patient["first_name"],
                 "last_name": patient["last_name"],
                 "username": patient["username"],
                 "birth_date": PatientDto.__validate_birth_date(patient["birth_date"]),

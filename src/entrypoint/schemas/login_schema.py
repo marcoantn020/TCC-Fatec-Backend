@@ -7,6 +7,7 @@ class UserOutputLogin(BaseModel):
     id: int
     name: Optional[str]
     username: str
+    admin: int
 
 
 class LoginInput(BaseModel):
@@ -20,5 +21,6 @@ class ResponseToken(BaseModel):
                         {
                             "id": 2,
                             "name": "johndoe",
-                            "username": "johnDoe"
+                            "username": "johnDoe",
+                            "admin": 0
                         })
