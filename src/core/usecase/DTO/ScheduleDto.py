@@ -23,5 +23,5 @@ class ScheduleDto:
     @staticmethod
     def __check_name(name: str):
         if not name:
-            return None
+            return ""
         return name

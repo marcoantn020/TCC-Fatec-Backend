@@ -1,6 +1,7 @@
 
 from pydantic import BaseModel
 from pydantic import Field
+from typing import Optional
 
 
 class ScheduleInput(BaseModel):
@@ -18,7 +19,7 @@ class DateOfScheduling(BaseModel):
 
 class ScheduleInputCancel(BaseModel):
     date_of_scheduling: str = Field("02/01/2023")
-    id_patient: int = Field("3")
+    id_patient: Optional[int] = Field("3")
 
 
 class FindScheduleByDate(BaseModel):
