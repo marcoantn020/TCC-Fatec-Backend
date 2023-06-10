@@ -12,7 +12,7 @@ class JWTTokenGenerated(Token):
             "id_logged": id_logged,
             "username": username,
             "is_admin": is_admin,
-            "expiry": time.time() + 3600
+            "expiry": time.time() + 86400
         }
         token = jwt.encode(payload=payload, key=config["jwt"]["SECRET_KEY"], algorithm=config["jwt"]["ALGORITHM"])
         return token
