@@ -29,3 +29,4 @@ class FindScheduleByDate(BaseModel):
 class ScheduleTodayOutput(BaseModel):
     date_of_scheduling: str = Field("02/01/2023 10:00:00")
     patient: str = Field("Ciclano")
+    id_patient: Optional[int] = Field("3")
