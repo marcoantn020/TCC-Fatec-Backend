@@ -4,6 +4,7 @@ from src.core.dataprovider.repository.schedule.FindScheduleTodayOrOtherDate impo
 from datetime import datetime
 from src.core.usecase.DTO.ScheduleDto import ScheduleDto
 from typing import Any, Dict
+from datetime import datetime, timedelta
 
 
 class AdminFindScheduleByDateUseCaseImpl(FindScheduleByDateUseCase):
@@ -20,7 +21,12 @@ class AdminFindScheduleByDateUseCaseImpl(FindScheduleByDateUseCase):
         if len(result) < 1:
             raise MyCustomError(message="Nada agendado ate o momento", status_code=404)
         date_dto = ScheduleDto.format(result)
-        return date_dto
+        hourCurrentNow = (datetime.now() - timedelta(hours=3)).strftime("%H")
+        newArray = []
+        for d in date_dto:
+            if d['date_of_scheduling'].split(" ")[1].split(":")[0] > hourCurrentNow:
+                newArray.append(d)
+        return newArray
 
     @staticmethod
     def __str_to_datetime(value: str):
