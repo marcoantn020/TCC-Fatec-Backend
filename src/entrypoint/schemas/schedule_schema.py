@@ -18,7 +18,7 @@ class DateOfScheduling(BaseModel):
 
 
 class ScheduleInputCancel(BaseModel):
-    date_of_scheduling: str = Field("02/01/2023")
+    date_of_scheduling: str = Field("02/01/2023 11:00:00")
     id_patient: Optional[int] = Field("3")
 
 
@@ -29,4 +29,4 @@ class FindScheduleByDate(BaseModel):
 class ScheduleTodayOutput(BaseModel):
     date_of_scheduling: str = Field("02/01/2023 10:00:00")
     patient: str = Field("Ciclano")
-    id_patient: Optional[int] = Field("3")
+    patient_id: Optional[int] = Field("3")
