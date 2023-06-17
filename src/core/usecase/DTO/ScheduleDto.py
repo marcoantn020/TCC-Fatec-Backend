@@ -10,7 +10,8 @@ class ScheduleDto:
             return {
                 "date_of_scheduling": DateFormat.datetime_to_str_schedule(value=schedule["date_of_scheduling"]),
                 "patient": ScheduleDto.__check_name(schedule["first_name"]),
-                "patient_id": ScheduleDto.__check_name(schedule["id_patient"])
+                "patient_id": ScheduleDto.__check_name(schedule["id_patient"]),
+                "is_active": schedule["is_active"]
             }
         else:
             new_array: list = []
@@ -18,7 +19,8 @@ class ScheduleDto:
                 new_array.append({
                     "date_of_scheduling": DateFormat.datetime_to_str_schedule(value=schedule[i]["date_of_scheduling"]),
                     "patient": ScheduleDto.__check_name(schedule[i]["first_name"]),
-                    "patient_id": ScheduleDto.__check_name(schedule[i]["id_patient"])
+                    "patient_id": ScheduleDto.__check_name(schedule[i]["id_patient"]),
+                    "is_active": schedule[i]["is_active"]
                 })
             return new_array
 

@@ -99,8 +99,8 @@ def cancel_schedule(request: Request, schedule_cancel: ScheduleInputCancel):
         raise HTTPException(status_code=error.status_code, detail=error.message)
 
 
-@router.post("/schedule/list", dependencies=[Depends(JWTBearer())], status_code=status.HTTP_200_OK,
-             response_model=List[ScheduleTodayOutput])
+@router.post("/schedule/list", dependencies=[Depends(JWTBearer())], status_code=status.HTTP_200_OK)
+            #  response_model=List[ScheduleTodayOutput])
 def find_schedule_by_date(request: Request, date: FindScheduleByDate):
     try:
         is_admin: int = GetUserDataLogged.get_user_is_admin(request=request)

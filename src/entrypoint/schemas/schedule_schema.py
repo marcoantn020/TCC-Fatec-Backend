@@ -30,3 +30,4 @@ class ScheduleTodayOutput(BaseModel):
     date_of_scheduling: str = Field("02/01/2023 10:00:00")
     patient: str = Field("Ciclano")
     patient_id: Optional[int] = Field("3")
+    is_active: Optional[int] = Field("0")
